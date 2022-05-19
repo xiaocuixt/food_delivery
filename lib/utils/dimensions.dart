@@ -16,8 +16,17 @@ class Dimensions {
   // dynamic height
   static double height10 = screenHeight / 84.4;
   static double height20 = screenHeight / 42.2;
+  static double height30 = screenHeight / 28.13;
 
   // dynamic width, 可以动态设定左右间距等水平方向的值
   static double width10 = screenWidth / 84.4;
   static double width20 = screenWidth / 42.2;
+  static double width30 = screenWidth / 28.13;
+
+  // dynamic radius
+  static double radius20 = screenWidth / 42.2;
+  static double radius15 = screenWidth / 56.27;
+
+  // list view size
+  static double listViewImgSize = screenWidth / 3.25;
 }
