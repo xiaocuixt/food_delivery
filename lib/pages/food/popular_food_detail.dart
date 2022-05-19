@@ -4,6 +4,8 @@ import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:food_delivery/widgets/expandable_text_widget.dart';
+import 'package:food_delivery/widgets/small_text.dart';
 
 class PopularFoodDetail extends StatefulWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -18,6 +20,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(children: [
+        // background image
         Positioned(
           left: 0,
           right: 0,
@@ -26,10 +29,13 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
             height: 350,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("images/food1.jpeg"), fit: BoxFit.cover),
+                fit: BoxFit.cover,
+                image: AssetImage("images/food1.jpeg"),
+              ),
             ),
           ),
         ),
+        // icon widgets
         Positioned(
           top: 45,
           left: Dimensions.width20,
@@ -41,6 +47,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ]),
         ),
+        // Introduction
         Positioned(
           left: 0,
           right: 0,
@@ -63,11 +70,22 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                 SizedBox(
                   height: Dimensions.height20,
                 ),
-                BigText(text: "Introduce")
+                BigText(text: "Introduce"),
+                SizedBox(
+                  height: Dimensions.height20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: ExpandableTextWidget(
+                        text:
+                            "This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, signup or registration, signin or login, payment."),
+                  ),
+                )
               ],
             ),
           ),
         )
+        // Expandable text widget
       ]),
       bottomNavigationBar: Container(
         height: Dimensions.bottomHeigthBar,
