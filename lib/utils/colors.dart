@@ -9,4 +9,6 @@ class AppColors {
   static final Color iconColor1 = const Color(0xFFffd28d);
   static final Color iconColor2 = const Color(0xFFfcab88);
   static final Color paraColor = const Color(0xFF8f837f);
+  static final Color buttonBackgroundColor = const Color(0xFFeeeeee);
+  static final Color signColor = const Color(0xFF4e4e4e);
 }

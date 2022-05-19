@@ -18,6 +18,10 @@ class Dimensions {
   static double height20 = screenHeight / 42.2;
   static double height30 = screenHeight / 28.13;
 
+  // dynamic font size
+  static double font20 = screenHeight / 42.2;
+  static double font26 = screenHeight / 32.46;
+
   // dynamic width, 可以动态设定左右间距等水平方向的值
   static double width10 = screenWidth / 84.4;
   static double width20 = screenWidth / 42.2;
@@ -29,4 +33,9 @@ class Dimensions {
 
   // list view size
   static double listViewImgSize = screenWidth / 3.25;
+  // popular food
+  static double popularFoodImgSize = screenHeight / 2.5;
+
+  // bottom height
+  static double bottomHeigthBar = screenHeight / 10;
 }
