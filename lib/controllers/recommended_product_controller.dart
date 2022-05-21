@@ -9,7 +9,7 @@ class RecommendedProductController extends GetxController {
 
   List<dynamic> _recommendedProductList = [];
 
-  List<dynamic> get RecommendedProductList => _recommendedProductList;
+  List<dynamic> get recommendedProductList => _recommendedProductList;
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 

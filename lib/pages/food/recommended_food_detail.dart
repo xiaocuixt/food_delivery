@@ -1,25 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    print(RouteHelper.getPopularFood(pageId));
+    print(product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             toolbarHeight: 80,
+            automaticallyImplyLeading: false,
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.clear),
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getInitial());
+                      },
+                      child: AppIcon(icon: Icons.clear)),
                   AppIcon(icon: Icons.shopping_cart_outlined)
                 ]),
             bottom: PreferredSize(
@@ -27,7 +41,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               child: Container(
                 child: Center(
                     child:
-                        BigText(size: Dimensions.font26, text: "Chinese side")),
+                        BigText(size: Dimensions.font26, text: product.name)),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
@@ -42,8 +56,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'images/food1.jpeg',
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -54,9 +68,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(
                   left: Dimensions.width20, right: Dimensions.width20),
-              child: ExpandableTextWidget(
-                  text:
-                      "This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, signup or registration, signin or login, payment., This is an e-commerce app for food delivery using flutter with backend. This  This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This is an e-commerce app for food delivery using flutter with backend. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders,This tutorial covers complete shopping cart, placing orders,is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, signup or registration, signin or login, payment."),
+              child: ExpandableTextWidget(text: product.description),
             ),
           ]))
         ],
@@ -80,7 +92,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconColor: Colors.white,
                 ),
                 BigText(
-                  text: "\12.88 " + " x " + " 0 ",
+                  text: "\$ ${product.price} " + " x " + " 0 ",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -133,7 +145,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                             BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor),
                     child: BigText(
-                        text: "\$10 | Add to cart", color: Colors.white),
+                        text: "\$ ${product.price}" + "| Add to cart",
+                        color: Colors.white),
                   )
                 ]),
           ),
