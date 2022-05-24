@@ -5,6 +5,7 @@ import 'package:food_delivery/widgets/feature_heading.dart';
 import 'package:food_delivery/widgets/featured_tile.dart';
 import 'package:food_delivery/widgets/floationg_quick_access_bar.dart';
 import 'package:food_delivery/widgets/main_heading.dart';
+import 'package:food_delivery/widgets/menu_drawer.dart';
 import 'package:food_delivery/widgets/top_bar_contents.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,11 +40,30 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-          preferredSize: Size(MediaQuery.of(context).size.width, 70),
-          child: TopBarContents(
-            opacity: _opacity,
-          )),
+      appBar: screenSize.width < 800
+          ? AppBar(
+              iconTheme: IconThemeData(
+                color: Colors.blue,
+              ),
+              elevation: 0,
+              backgroundColor: Colors.white.withOpacity(_opacity),
+              title: Text(
+                'Author',
+                style: TextStyle(
+                  color: Color(0xFFF077bd7),
+                  fontSize: 26,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 3,
+                ),
+              ),
+            )
+          : PreferredSize(
+              preferredSize: Size(MediaQuery.of(context).size.width, 70),
+              child: TopBarContents(
+                opacity: _opacity,
+              )),
+      drawer: MenuDrawer(),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/widgets/responsive.dart';
 
 class FloatingQuickAccessBar extends StatefulWidget {
   FloatingQuickAccessBar({
@@ -65,14 +66,12 @@ class _FloatingQuickAccessBarState extends State<FloatingQuickAccessBar> {
       child: Padding(
         padding: EdgeInsets.only(
           top: widget.screenSize.height * 0.6,
-          left: widget.screenSize.width / 12,
-          right: widget.screenSize.width / 12,
-          // left: ResponsiveWidget.isSmallScreen(context)
-          //     ? widget.screenSize.width / 12
-          //     : widget.screenSize.width / 5,
-          // right: ResponsiveWidget.isSmallScreen(context)
-          //     ? widget.screenSize.width / 12
-          //     : widget.screenSize.width / 5,
+          left: ResponsiveWidget.isSmallScreen(context)
+              ? widget.screenSize.width / 12
+              : widget.screenSize.width / 5,
+          right: ResponsiveWidget.isSmallScreen(context)
+              ? widget.screenSize.width / 12
+              : widget.screenSize.width / 5,
         ),
         child: Card(
           elevation: 5,
